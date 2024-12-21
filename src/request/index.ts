@@ -1,4 +1,5 @@
 import type { FetchResult, Response as MyResponse } from '@/types/response_types'
+import type { PostCreateArticleBody } from '@/types/request_types'
 import { HttpError, to } from '@/utils'
 
 const apiOrigin = import.meta.env.VITE_API_ORIGIN
@@ -150,9 +151,14 @@ const fetchArticleUseIdWithLang = async <T>(
   }
   return [null, jsonData.body]
 }
+
+const fetchCreateArticle = async <T>(
+  articleData: PostCreateArticleBody,
+): Promise<FetchResult<T>> => {}
 export {
   fetchArticleUsePageWithLang,
   fetchArticleCountInfo,
   fetchArticleUsePageWithLangAndTag,
   fetchArticleUseIdWithLang,
+  fetchCreateArticle,
 }

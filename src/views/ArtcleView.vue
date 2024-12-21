@@ -37,6 +37,10 @@ import { fetchArticleUseIdWithLang } from '@/request'
 import type { Article } from '@/types/article_types'
 import ArticleLoad from '@/components/ArticleLoad.vue'
 
+import { useToast } from '@/service/toastService'
+
+const toast = useToast()
+
 const route = useRoute()
 const router = useRouter()
 const articleStore = useArticleStore()
@@ -55,6 +59,11 @@ async function initView() {
     if (err) {
       const httpError = err as HttpError // 类型断言
       if (httpError.status === 404) {
+        toast({
+          message: 'Article Not Found!\r\nGo to home page',
+          type: 'error',
+          duration: 3000, // 可选：5秒后自动消失
+        })
         setTimeout(() => {
           return router.push('/articles/1')
         }, 3000)
