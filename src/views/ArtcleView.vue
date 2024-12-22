@@ -1,3 +1,4 @@
+<!-- eslint-disable @typescript-eslint/ban-ts-comment -->
 <template>
   <div style="width: 100%">
     <div v-if="isLoad">
@@ -22,6 +23,7 @@
 
 <script setup lang="ts">
 import markdown from 'markdown-it'
+
 import { HttpError } from '@/utils/index'
 
 import { useRouter } from 'vue-router'

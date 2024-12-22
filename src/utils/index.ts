@@ -43,13 +43,6 @@ class HttpError extends Error {
   }
 }
 
-function parseRouteParams() {
-  return {
-    page: Number(route.params.page) || 1,
-    tag: route.params.tagname || '',
-  }
-}
-
 function GenerateUUID() {
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (char) {
     const random = (Math.random() * 16) | 0

@@ -152,13 +152,9 @@ const fetchArticleUseIdWithLang = async <T>(
   return [null, jsonData.body]
 }
 
-const fetchCreateArticle = async <T>(
-  articleData: PostCreateArticleBody,
-): Promise<FetchResult<T>> => {}
 export {
   fetchArticleUsePageWithLang,
   fetchArticleCountInfo,
   fetchArticleUsePageWithLangAndTag,
   fetchArticleUseIdWithLang,
-  fetchCreateArticle,
 }
