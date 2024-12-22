@@ -37,6 +37,5 @@ const props = defineProps({
   title: String,
   date: String,
   introduction: String,
-  handlerViewArticle: Function,
 })
 </script>

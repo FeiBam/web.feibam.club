@@ -41,9 +41,6 @@ const articleLimitOfPage = import.meta.env.VITE_ARTICLE_LIMIT_OF_PAGE
 
 const tagName = computed(() => route.params.tagname.toString() ?? '')
 
-console.log(tagName)
-
-console.log(articleStore.articleCountInfo.articleCountOfLangAndTag)
 const totalPage = computed(() => {
   return Math.ceil(
     articleStore.articleCountInfo.articleCountOfLangAndTag[tagName.value] / articleLimitOfPage,

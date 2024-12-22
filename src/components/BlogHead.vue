@@ -9,11 +9,19 @@
     </div>
     <div class="menu">
       <div class="menu-flex">
-        <a class="menu-tag" :class="{ 'menu-tag-active': isArticleActive }">
+        <a
+          class="menu-tag"
+          :class="{ 'menu-tag-active': isArticleActive }"
+          @click="router.push('/articles/1')"
+        >
           <font-awesome-icon :icon="['fas', 'rss']" class="fa-fw" />
           {{ $t('article') }}
         </a>
-        <a class="menu-tag" :class="{ 'menu-tag-active': isFriendLinkActive }">
+        <a
+          class="menu-tag"
+          :class="{ 'menu-tag-active': isFriendLinkActive }"
+          @click="router.push('/friends')"
+        >
           <font-awesome-icon :icon="['fas', 'link']" class="fa-fw" />
           {{ $t('friendLink') }}
         </a>
@@ -31,17 +39,23 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 
 // 获取当前路由
 const route = useRoute()
+const router = useRouter()
 
 // 判断是否为目标路由
 const isArticleActive = computed(() => {
-  return route.name === 'articles' || route.name === 'articlesOfTag'
+  return (
+    route.name === 'articles' ||
+    route.name === 'articlesOfTag' ||
+    route.name === 'article' ||
+    route.name === ''
+  )
 })
 
 const isFriendLinkActive = computed(() => {
-  return route.name === 'friendLink'
+  return route.name === 'friends'
 })
 </script>

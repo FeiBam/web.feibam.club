@@ -6,19 +6,12 @@
 </template>
 
 <script setup lang="ts">
-import { computed, provide } from 'vue'
+import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import DefaultArticlesView from './DefaultArticlesView.vue'
 import TagArticlesView from './TagArticlesView.vue'
-import router from '@/router'
-import type { Tag } from '@/types/article_types'
 
 // 获取路由参数
 const route = useRoute()
 const tag = computed(() => route.params.tagname ?? '')
-
-provide('onTagClick', handleTagClick)
-function handleTagClick(item: Tag) {
-  router.push(`/tag/${item.name}/1`)
-}
 </script>
