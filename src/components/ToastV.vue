@@ -26,10 +26,13 @@ const toasts = useToastState()
   flex-direction: column;
   gap: 10px;
   pointer-events: none; /* 避免遮挡点击事件 */
+  transition: 0.75s;
 }
 
 /* Toast 消息样式 */
 .toast {
+  width: 100%;
+  height: auto;
   padding: 10px 20px;
   border-radius: 5px;
   color: white;
@@ -59,14 +62,13 @@ const toasts = useToastState()
 .toast-move,
 .toast-enter-active,
 .toast-leave-active {
-  transition: all 0.75s;
+  transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1);
 }
-
 /* 2. 声明进入和离开的状态 */
 .toast-enter-from,
 .toast-leave-to {
   opacity: 0;
-  transform: translate(30px);
+  transform: scaleY(0.01) translate(30px, 0);
 }
 
 /* 3. 确保离开的项目被移除出了布局流

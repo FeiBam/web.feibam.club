@@ -1,7 +1,9 @@
 <template>
   <div style="width: 100%">
-    <TagArticlesView v-if="tag" />
-    <DefaultArticlesView v-else />
+    <Transition name="fade" mode="out-in">
+      <TagArticlesView v-if="tag" />
+      <DefaultArticlesView v-else />
+    </Transition>
   </div>
 </template>
 
@@ -15,3 +17,14 @@ import TagArticlesView from './TagArticlesView.vue'
 const route = useRoute()
 const tag = computed(() => route.params.tagname ?? '')
 </script>
+<style lang="css" scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>

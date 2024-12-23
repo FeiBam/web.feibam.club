@@ -4,12 +4,14 @@
       <ArticleLoad v-for="index of 5" :key="index"></ArticleLoad>
     </div>
     <div v-else>
-      <ArticlePreview
-        v-for="item in viewArticles"
-        :key="item.id"
-        :article="item"
-        :handlerViewArticle="viewArticle"
-      />
+      <TransitionGroup name="fade">
+        <ArticlePreview
+          v-for="item in viewArticles"
+          :key="item.id"
+          :article="item"
+          :handlerViewArticle="viewArticle"
+        />
+      </TransitionGroup>
     </div>
     <PaginationComponents
       :AllPage="totalPage"
@@ -117,3 +119,18 @@ onMounted(async () => {
   await viewInit()
 })
 </script>
+
+<style lang="css" scoped>
+.fade-move,
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.75s cubic-bezier(0.55, 0, 0.1, 1);
+}
+/* 2. 声明进入和离开的状态 */
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+  transition: height;
+  transform: scaleY(0.01) translate(30px, 0);
+}
+</style>
