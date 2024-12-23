@@ -21,6 +21,8 @@
 </template>
 
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
 import { ref, computed, onMounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useArticleStore } from '@/stores/index'
@@ -31,6 +33,9 @@ import { fetchArticleCountInfo, fetchArticleUsePageWithLangAndTag } from '@/requ
 import i18n from '@/i18n'
 import type { ResponseArticles } from '@/types/response_types'
 import type { Article, ArticleCount } from '@/types/article_types'
+import { useToast } from '@/service/toastService'
+
+const toast = useToast()
 const router = useRouter()
 const route = useRoute()
 const articleStore = useArticleStore()
@@ -88,6 +93,13 @@ function viewArticle(id: number) {
 async function viewInit() {
   isLoad.value = true
   const [err, res] = await fetchArticleCountInfo<ArticleCount>(i18n.global.locale)
+  if (err) {
+    isLoad.value = true
+    return toast({
+      type: 'error',
+      message: `${t('fetchArticleCountInfoFail')} `,
+    })
+  }
   if (!err) {
     articleStore.updateArticleCountInfo(
       res || {

@@ -87,6 +87,7 @@ async function viewInit() {
   isLoad.value = true
   const [err, res] = await fetchArticleCountInfo<ArticleCount>(i18n.global.locale)
   if (err) {
+    isLoad.value = true
     return toast({
       type: 'error',
       message: `${t('fetchArticleCountInfoFail')} `,
@@ -101,15 +102,12 @@ async function viewInit() {
       },
     )
   }
+  console.log(isLoad)
   await handlePageChange(pageNum.value)
   isLoad.value = false
 }
 
 onMounted(async () => {
   await viewInit()
-})
-
-onMounted(async () => {
-  await handlePageChange(pageNum.value)
 })
 </script>
