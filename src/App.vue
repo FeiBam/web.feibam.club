@@ -3,6 +3,7 @@
   <BlogHead></BlogHead>
   <BlogMain></BlogMain>
   <BlogFooter></BlogFooter>
+  <I18nS></I18nS>
 </template>
 
 <script setup lang="ts">
@@ -14,6 +15,7 @@ import router from '@/router'
 import type { Tag } from '@/types/article_types'
 import { useToastProvider } from '@/service/toastService'
 import Toast from './components/ToastV.vue'
+import I18nS from './components/I18nS.vue'
 
 useToastProvider()
 

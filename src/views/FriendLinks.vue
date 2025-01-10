@@ -21,15 +21,21 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import ArticleHead from '@/components/ArticleHead.vue'
 import FriendLinkItem from '@/components/FriendLinkItem.vue'
 import BaseContent from '@/components/BaseContent.vue'
-const articleHeadInfo = ref({
-  title: '朋友们！',
-  date: '2024-12-20',
-  introduction: '朋友们的链接~',
-})
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
+
+// 文章信息对象，使用 computed 包装翻译字段
+const articleHeadInfo = computed(() => ({
+  title: t('friend'),
+  date: '2024-12-28',
+  introduction: t('friendLink'),
+}))
+
 const friendS = ref([
   {
     id: 0,
